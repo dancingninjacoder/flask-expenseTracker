@@ -1,0 +1,104 @@
+.v6_51 {
+  width: 380px;
+  color: rgba(48,42,42,1);
+  position: absolute;
+  top: 268px;
+  left: 91px;
+  font-family: Montserrat;
+  font-weight: Medium;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+}
+.v6_60 {
+  width: 269px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 165px;
+  left: 703px;
+  font-family: Readex Pro;
+  font-weight: Regular;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+}
+.v6_61 {
+  width: 399px;
+  height: 391px;
+  background: rgba(63,231,58,1);
+  opacity: 1;
+  position: absolute;
+  top: 213px;
+  left: 638px;
+  border-radius: 50%;
+}
+.v6_62 {
+  width: 381px;
+  height: 373px;
+  background: rgba(59,130,57,1);
+  opacity: 1;
+  position: absolute;
+  top: 222px;
+  left: 647px;
+  border-radius: 50%;
+}
+.expenseAmount {
+  width: 202px;
+  color: rgba(252,252,252,1);
+  position: absolute;
+  top: 360px;
+  left: 734px;
+  font-family: Montserrat;
+  font-weight: ExtraBold;
+  font-size: 66px;
+  opacity: 1;
+  text-align: center;
+}
+.v6_64 {
+  width: 269px;
+  color: rgba(241,237,237,1);
+  position: absolute;
+  top: 466px;
+  left: 706px;
+  font-family: Mulish;
+  font-weight: Medium;
+  font-size: 24px;
+  opacity: 1;
+  text-align: center;
+}
+.balanceAmount {
+  width: 289px;
+  color: rgba(59,130,57,1);
+  position: absolute;
+  top: 324px;
+  left: 67px;
+  font-family: Montserrat;
+  font-weight: SemiBold;
+  font-size: 48px;
+  opacity: 1;
+  text-align: center;
+}
+.v6_70 {
+  width: 380px;
+  color: rgba(48,42,42,1);
+  position: absolute;
+  top: 443px;
+  left: 21px;
+  font-family: Montserrat;
+  font-weight: Medium;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+}
+.incomeAmount {
+  width: 289px;
+  color: rgba(59,130,57,1);
+  position: absolute;
+  top: 507px;
+  left: 74px;
+  font-family: Montserrat;
+  font-weight: SemiBold;
+  font-size: 48px;
+  opacity: 1;
+  text-align: center;
+}

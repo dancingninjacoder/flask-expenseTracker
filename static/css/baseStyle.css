@@ -1,0 +1,146 @@
+/* Main styling for the basis of the website */
+/* @author Scott Ledford */
+
+/* All the colors for the webstie to be used*/
+/* @author Scott Ledford */
+:root {
+    --primary: #3B8239;
+    --secondary: #000022;
+    --teritary: #61947E;
+    --quaternary: #469B44;
+}
+
+/* Base design for Navbar for all pages */
+/* @author Scott Ledford*/
+.navbar {
+    background-color: var(--secondary);
+}
+
+/* This handles the base overlay image for the website for every page*/
+/* @author Scott Ledford */
+.overlay {
+    background: url("../img/green.png") no-repeat center center fixed;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* This sets up the container to display on top of the overlay image */
+/* @author Scott Ledford */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* This is for the main header for the head of the website. Should be used
+   when the Navbar isn't used */
+/* @author Scott Ledford */
+header {
+    font-size: large;
+    padding: 20px;
+    font-family: SmellaDaisy, sans-serif;
+    text-align: center;
+    max-width: 100%;
+    color: var(--primary);
+    border-style: solid;
+    border-width: .14em;
+    background-color: var(--secondary);
+    border-radius: 12px;
+}
+
+/* Ensures for forms like the signup or login form is centered */
+/* @author Scott Ledford */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* This section is for buttons */
+
+/* For all clickable buttons, this is the base of styling. */
+/* @author Scott Ledford */
+.appButton {
+    display: inline-block;
+    font-family: AlgoriaLight, sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    padding: 5px;
+    cursor: pointer;
+    border: 2px solid var(--teritary);
+    background-color: var(--secondary);
+    color: var(--primary);
+    transition: .5s ease, background-color 0.3s, border-color 0.3s;
+}
+
+/* On hover, the button rounds out on the corners to show the mouse pointer
+   is over a button */
+/* @author Scott Ledford */
+.appButton:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 24px;
+    border-color: var(--primary);
+}
+
+/* Styling for the labels and inputs*/
+
+/* This is the styling for the label for input fields */
+/* @author Scott Ledford */
+.baseLabel {
+    font-family: AlgoriaLight, sans-serif;
+    font-size: 18px;
+    padding: 1px 5px;
+    color: var(--primary);
+    border-style: solid;
+    border-width: .14em;
+    background-color: var(--secondary);
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: max-content;
+    text-align: center;
+}
+.baseLabel:default {
+    color: var(--secondary);
+    background-color: var(--primary);
+}
+.baseLabel::placeholder {
+    color: var(--primary);
+    opacity: 1;
+}
+
+/* This is the styling for input fields */
+/* @author Scott Ledford */
+.nameLabel {
+    font-family: AlgoriaLight, sans-serif;
+    font-size: 18px;
+    padding: 1px 5px;
+    color: var(--secondary);
+    border-style: solid;
+    border-width: .14em;
+    background-color: var(--primary);
+    border-radius: 12px;
+}
+
+/* Custom font for the page */
+/* For every custom font, a separate '@font-face' is necessary */
+/* AlgoriaLight is used for the general website, SmellaDaisy for headers
+   and other big labels */
+/* @author Scott Ledford */
+@font-face {
+    font-family: AlgoriaLight;
+    src: url(../fonts/AlgoriaLight.ttf);
+}
+@font-face {
+    font-family: SmellaDaisy;
+    size-adjust: 150%;
+    src: url(../fonts/SmellaDaisy.ttf);
+}

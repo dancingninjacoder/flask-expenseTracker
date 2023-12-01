@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+    <link rel="icon" href="./img/SalahBucks.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/baseStyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/budget.css') }}">
+</head>
+<body>
+
+    <div class="overlay">
+        <div class="container">
+    
+            <section id="customerNavbar">
+                <nav class="navbar navbar-expand-lg border-bottom border-body bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand navbar-dark" href="./homePage.html">
+                            <img src="./img/dollar-symbol.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav navbar-dark">
+                                <a class="nav-link" href="{{ url_for('expense') }}" >Expenses</a> 
+                                <a class="nav-link" href="{{ url_for('income') }}">Incomes</a>
+                                <a class="nav-link" href="{{ url_for('budget') }}">Budgets</a>
+                                <a id="logout" class="nav-link" href="{{ url_for('index') }}">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+
+    <div id="budget">
+        <h2>Your Budget:</h2>
+        <div id="budgetContent">
+            <div id="budgetSections">
+                <div class="budget-section" id="utilities">
+                    <h3>Utilities</h3>
+                    <p>Current Amount: <span id="utilitiesCurrent">0</span></p>
+                    <p>Goal Amount: <span id="utilitiesGoal">0</span></p>
+                </div>
+                <div class="budget-section" id="personal">
+                    <h3>Personal</h3>
+                    <p>Current Amount: <span id="personalCurrent">0</span></p>
+                    <p>Goal Amount: <span id="personalGoal">0</span></p>
+                </div>
+                <div class="budget-section" id="discretionary">
+                    <h3>Discretionary</h3>
+                    <p>Current Amount: <span id="discretionaryCurrent">0</span></p>
+                    <p>Goal Amount: <span id="discretionaryGoal">0</span></p>
+                </div>
+            </div>
+            <div id="modifyBudget">
+                <h3>Modify Budget:</h3>
+                <div>
+                    <label for="budgetCategory">Select Category:</label>
+                    <div>
+                        <select id="budgetCategory">
+                            <option value="utilities">Utilities</option>
+                            <option value="personal">Personal</option>
+                            <option value="discretionary">Discretionary</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="budgetChangeType">Change Type:</label>
+                    <div>
+                        <select id="budgetChangeType">
+                            <option value="deposit">Deposit</option>
+                            <option value="deduct">Deduct</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="budgetAmount">Amount:</label>
+                    <div>
+                        <input type="number" id="budgetAmount" placeholder="Enter Amount">
+                    </div>
+                </div>
+                <!-- Add input field for goal amount -->
+                <div>
+                    <label for="budgetGoalAmount">Goal Amount:</label>
+                    <div>
+                        <input type="number" id="budgetGoalAmount" placeholder="Enter Goal Amount">
+                    </div>
+                </div>
+                <button id="modifyBudgetButton" onclick="modifyBudget()">Update Current Amount</button>
+                <!-- Add a button to save goal amount changes -->
+                <button id="saveGoalAmountButton" onclick="saveGoalAmount()">Update Goal Amount</button>
+                <!-- Add a button to clear localStorage -->
+                <button id="resetValuesButton" onclick="resetValues()">Reset Values</button>
+                <button id="goToHomePageButton" onclick="goToHomePage()">Go to Home Page</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/budget.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+</body>
+</html>
