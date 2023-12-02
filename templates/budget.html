@@ -20,7 +20,7 @@
                 <nav class="navbar navbar-expand-lg border-bottom border-body bg-body-tertiary">
                     <div class="container-fluid">
                         <a class="navbar-brand navbar-dark" href="./homePage.html">
-                            <img src="./img/dollar-symbol.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                            <img src="{{ url_for('static', filename='img/dollar-symbol.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,7 @@
                                 <a class="nav-link" href="{{ url_for('expense') }}" >Expenses</a> 
                                 <a class="nav-link" href="{{ url_for('income') }}">Incomes</a>
                                 <a class="nav-link" href="{{ url_for('budget') }}">Budgets</a>
+                                <a class="nav-link" href="{{ url_for('user') }}">Settings</a>
                                 <a id="logout" class="nav-link" href="{{ url_for('index') }}">Logout</a>
                             </div>
                         </div>
