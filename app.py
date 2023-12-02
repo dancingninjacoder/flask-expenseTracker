@@ -2,8 +2,9 @@
 from flask import Flask, render_template, session, redirect, url_for, request, jsonify
 from functools import wraps
 from passlib.hash import pbkdf2_sha256
+from bson.objectid import ObjectId
 import pymongo
-
+currentUser =''
 app = Flask(__name__)
 app.secret_key = "super secret key"
 
@@ -75,9 +76,40 @@ def login():
 
 
 #TO BE DONE
-@app.route('/expense')
+@app.route('/expense', methods=['GET'])
 def expense():
     return render_template('expenseTracker.html')
+
+@app.route('/processExpense', methods=['POST'])
+def processExpense():
+
+    # Find the user document based on some identifier (e.g., email)
+    user_email = session['username']
+    
+    user_query = {'email': user_email}
+    user_document = db.users.find_one(user_query)
+
+    if (request.method == 'POST' and user_document):
+        user_id = str(user_document['_id'])
+        expenseName = request.form['expenseName']
+        expenseAmount = request.form['expenseAmount']
+        expenseCategory = request.form['expenseCategory']
+
+        new_data = db.users.update_one(user_id,['$set': {'expenses': [
+        {
+            'name' : expenseName,
+            'amount' : expenseAmount,
+            'category' : expenseCategory
+        }]}])
+
+
+
+
+
+
+    return render_template('expenseTracker.html')
+
+
 
 @app.route('/income')
 def income():
