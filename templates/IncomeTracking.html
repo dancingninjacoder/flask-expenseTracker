@@ -16,27 +16,27 @@
 <div class="overlay">
    <div class="container">
       <section id="customerNavbar">
-         <nav class="navbar navbar-dark border-bottom border-body bg-body-tertiary">
-            <div class="container-fluid">
-               <a class="navbar-brand navbar-dark" href="./homePage.html">
-                  <img src="{{ url_for('static', filename='img/dollar-symbol.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-               </a>
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                  <div class="navbar-nav navbar-dark">
-                     <a class="nav-link" href="{{ url_for('expense') }}" >Expenses</a> 
-                     <a class="nav-link" href="{{ url_for('income') }}">Incomes</a>
-                     <a class="nav-link" href="{{ url_for('budget') }}">Budgets</a>
-                     <a class="nav-link" href="{{ url_for('user') }}">Settings</a>
-                     <a id="logout" class="nav-link" href="{{ url_for('index') }}">Logout</a>
-                  </div>
-               </div>
-            </div>
+         <nav class="navbar navbar-expand-lg border-bottom border-body bg-body-tertiary">
+             <div class="container-fluid">
+                 <a class="navbar-brand navbar-dark" href="{{ url_for('homePage') }}">
+                     <img src="{{ url_for('static', filename='img/dollar-symbol.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                 </a>
+                 <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                 </button> -->
+                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                     <div class="navbar-nav navbar-dark">
+                         <a class="nav-link" href="{{ url_for('expense') }}" >Expenses</a> 
+                         <a class="nav-link" href="{{ url_for('income') }}">Incomes</a>
+                         <a class="nav-link" href="{{ url_for('budget') }}">Budgets</a>
+                         <a class="nav-link" href="{{ url_for('user') }}">Settings</a>
+                         <a id="logout" name="logout" class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                     </div>
+                 </div>
+             </div>
          </nav>
-      </section>
+     </section>
       <!-- Wrap the user input form in a div for styling -->
       <div class="user-input-section">
          <!-- ... user input form ... -->
@@ -45,27 +45,29 @@
             <!-- User input form -->
             <div class="user-input-section">
                <h3>Modify Income:</h3>
-               <div class="input-group">
-                  <label for="incomeDate">Date:</label>
-                  <input type="date" id="incomeDate" name="incomeDate" placeholder="Select Date">
-               </div>
-               <div class="input-group">
-                  <label for="merchantName">Merchant Name:</label>
-                  <input type="text" id="merchantName" name="merchantName" placeholder="Enter Merchant Name">
-               </div>
-               <div class="input-group">
-                  <label for="category">Category:</label>
-                  <select id="category" name="category">
-                     <option value="Paychecks/Salary">Paychecks/Salary</option>
-                     <option value="Other Income">Other Income</option>
-                  </select>
-               </div>
-               <div class="input-group">
-                  <label for="amount">Amount:</label>
-                  <input type="number" id="amount" name="amount" placeholder="Enter Amount">
-               </div>
-               <button id="addIncomeButton" class="btn">Add More Income</button>
-               <button id="generateChartButton" class="btn">Generate Chart</button>
+               <form id="addIncomeForm" method="POST" action="{{ url_for('processIncome') }}">
+                  <div class="input-group">
+                     <label for="incomeDate">Date:</label>
+                     <input type="date" id="incomeDate" name="incomeDate" placeholder="Select Date">
+                  </div>
+                  <div class="input-group">
+                     <label for="merchantName">Merchant Name:</label>
+                     <input type="text" id="merchantName" name="merchantName" placeholder="Enter Merchant Name">
+                  </div>
+                  <div class="input-group">
+                     <label for="category">Category:</label>
+                     <select id="category" name="category">
+                        <option value="Paychecks/Salary">Paychecks/Salary</option>
+                        <option value="Other Income">Other Income</option>
+                     </select>
+                  </div>
+                  <div class="input-group">
+                     <label for="amount">Amount:</label>
+                     <input type="number" id="amount" name="amount" placeholder="Enter Amount">
+                  </div>
+                  <button id="addIncomeButton" class="btn">Add More Income</button>
+                  <button id="generateChartButton" class="btn">Generate Chart</button>
+               </form>
                <div id="tableContainer">
                   <!-- The dynamic table will be inserted here -->
                </div>
@@ -81,8 +83,8 @@
    </div>
 </div>
 <!-- ... scripts ... -->
-<script type="module" src="{{ url_for('static', filename='js/IncomeTracker.js') }}"></script>
-<script>
+<!-- <script type="module" src="{{ url_for('static', filename='js/IncomeTracker.js') }}"></script> -->
+<!-- <script>
    document.getElementById('addIncomeButton').addEventListener('click', function() {
 
       document.getElementById('addIncomeButton').addEventListener('click', function() {
@@ -155,12 +157,14 @@
 
    });
 
-</script>
+</script> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
 </body>
 </html>

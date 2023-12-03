@@ -3,6 +3,7 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 from functools import wraps
 from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
+
 import pymongo
 currentUser =''
 app = Flask(__name__)
@@ -80,49 +81,155 @@ def login():
 def expense():
     return render_template('expenseTracker.html')
 
+#Function to insert and store expense from add Expense form
 @app.route('/processExpense', methods=['POST'])
 def processExpense():
 
     # Find the user document based on some identifier (e.g., email)
-    user_email = session['username']
-    
-    user_query = {'email': user_email}
-    user_document = db.users.find_one(user_query)
+    user_email = session['username'] #Find the user that is logged in to insert and retrieve
+    document = db.users.find_one({'email': user_email})
 
-    if (request.method == 'POST' and user_document):
-        user_id = str(user_document['_id'])
+    if (request.method == 'POST' and document):
+        print("Found user logged in")
+        print("Fetching form data...")
+
+        user_id = document.get('_id')
         expenseName = request.form['expenseName']
         expenseAmount = request.form['expenseAmount']
         expenseCategory = request.form['expenseCategory']
 
-        new_data = db.users.update_one(user_id,['$set': {'expenses': [
-        {
-            'name' : expenseName,
-            'amount' : expenseAmount,
-            'category' : expenseCategory
-        }]}])
+        expense_form_data = [
+            {
+                "name": expenseName,
+                "amount": expenseAmount,
+                "category": expenseCategory
+            }
+        ]
 
-
-
-
-
-
-    return render_template('expenseTracker.html')
-
+        #If the user object id matches then push the new expense into the database user account
+        if (db.users.update_one({'_id': user_id}, {'$push': {'expenses': expense_form_data}})): 
+            print("Added expense succesfully to the database")
+        else:
+            print('Error when adding this object to db, check error logs')
+    return render_template('expenseTracker.html')    
 
 
 @app.route('/income')
 def income():
     return render_template('IncomeTracking.html')
 
+#Function to insert and store income from MofifyIncome form
+@app.route('/processIncome', methods=['POST'])
+def processIncome():
+    
+    # Find the user document based on some identifier (e.g., email)
+    user_email = session['username'] #Find the user that is logged in to insert and retrieve
+    document = db.users.find_one({'email': user_email})
+
+    if (request.method == 'POST' and document):
+        print("Found user logged in")
+        print("Fetching form data...")
+
+        user_id = document.get('_id')
+        incomeDate = request.form['incomeDate']
+        category = request.form['category']
+        amount = request.form['amount']
+        
+        income_form_data = [
+            {
+                "date": incomeDate,
+                "category": category,
+                "amount": amount
+            }
+        ]
+
+        #If the user object id matches then push the new expense into the database user account
+        if (db.users.update_one({'_id': user_id}, {'$push': {'incomes': income_form_data}})): 
+            print("Added income succesfully to the database")
+        else:
+            print('Error when adding this object to db, check error logs')
+    return redirect(url_for('income'))
+
+#Function to redirect to budget.html
 @app.route('/budget')
 def budget():
     return render_template('budget.html')
 
+#Function to insert and store budget from ModifyBudget form
+@app.route('/processBudget', methods=['POST'])
+def processBudget():
+        
+    # Find the user document based on some identifier (e.g., email)
+    user_email = session['username'] #Find the user that is logged in to insert and retrieve
+    document = db.users.find_one({'email': user_email})
+
+    if (request.method == 'POST' and document):
+        print("Found user logged in")
+        print("Fetching form data...")
+
+        user_id = document.get('_id')
+        budgetCategory = request.form['budgetCategory']
+        budgetChangeType = request.form['budgetChangeType']
+        budgetAmount = request.form['budgetAmount']
+        budgetGoalAmount = request.form['budgetGoalAmount']
+        
+        budget_form_data = [
+            {
+                "category": budgetCategory,
+                "type": budgetChangeType,
+                "amount": budgetAmount,
+                "goal": budgetGoalAmount
+            }
+        ]
+
+        #If the user object id matches then push the new expense into the database user account
+        if (db.users.update_one({'_id': user_id}, {'$push': {'budgets': budget_form_data}})): 
+            print("Added income succesfully to the database")
+        else:
+            print('Error when adding this object to db, check error logs')
+    return redirect(url_for('budget'))
+
+
+#Function to redirect to user.html and display users info
 @app.route('/user')
 def user():
-    return render_template('user.html')
+        
+    # Find the user document based on some identifier (e.g., email)
+    user_email = session['username'] #Find the user that is logged in to insert and retrieve
+    document = db.users.find_one({'email': user_email})
+    # user_id = document.get('_id')
 
+    return render_template('user.html', user_data=document)
+
+
+#Function to change password
+@app.route('/changePassword', methods=['POST'])
+def changePassword():
+       
+    # Find the user document based on some identifier (e.g., email)
+    user_email = session['username'] #Find the user that is logged in to insert and retrieve
+    document = db.users.find_one({'email': user_email})
+
+    if (request.method == 'POST' and document):
+        print("Found user logged in")
+        print("Fetching form data...")
+
+        user_id = document.get('_id')
+        currentPassword = request.form['currentPassword']
+        newPassword = request.form['newPassword']
+        confirmPassword = request.form['confirmPassword']
+
+        oldPassword = document['password']
+        print(oldPassword)
+
+        #If password match then modify
+        if(pbkdf2_sha256.verify(currentPassword, oldPassword) and newPassword == confirmPassword):
+            if (db.users.update_one({'_id': user_id}, {'$set': {'password': pbkdf2_sha256.encrypt(confirmPassword)}})): 
+                print("Updated password succesfully to the database")
+
+        else:
+            print('Error when updating password, check error logs')
+    return render_template('user.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

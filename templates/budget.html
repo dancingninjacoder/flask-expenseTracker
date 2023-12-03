@@ -19,7 +19,7 @@
             <section id="customerNavbar">
                 <nav class="navbar navbar-expand-lg border-bottom border-body bg-body-tertiary">
                     <div class="container-fluid">
-                        <a class="navbar-brand navbar-dark" href="./homePage.html">
+                        <a class="navbar-brand navbar-dark" href="{{ url_for('homePage') }}">
                             <img src="{{ url_for('static', filename='img/dollar-symbol.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -61,44 +61,47 @@
             </div>
             <div id="modifyBudget">
                 <h3>Modify Budget:</h3>
-                <div>
-                    <label for="budgetCategory">Select Category:</label>
+                <form id="budgetForm" method= "POST" action="{{ url_for('processBudget') }}">
                     <div>
-                        <select id="budgetCategory">
-                            <option value="utilities">Utilities</option>
-                            <option value="personal">Personal</option>
-                            <option value="discretionary">Discretionary</option>
-                        </select>
+                        <label for="budgetCategory">Select Category:</label>
+                        <div>
+                            <select id="budgetCategory" name="budgetCategory">
+                                <option value="utilities">Utilities</option>
+                                <option value="personal">Personal</option>
+                                <option value="discretionary">Discretionary</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label for="budgetChangeType">Change Type:</label>
                     <div>
-                        <select id="budgetChangeType">
-                            <option value="deposit">Deposit</option>
-                            <option value="deduct">Deduct</option>
-                        </select>
+                        <label for="budgetChangeType">Change Type:</label>
+                        <div>
+                            <select id="budgetChangeType" name="budgetChangeType">
+                                <option value="deposit">Deposit</option>
+                                <option value="deduct">Deduct</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label for="budgetAmount">Amount:</label>
                     <div>
-                        <input type="number" id="budgetAmount" placeholder="Enter Amount">
+                        <label for="budgetAmount">Amount:</label>
+                        <div>
+                            <input type="number" id="budgetAmount" name="budgetAmount" placeholder="Enter Amount">
+                        </div>
                     </div>
-                </div>
-                <!-- Add input field for goal amount -->
-                <div>
-                    <label for="budgetGoalAmount">Goal Amount:</label>
+                    <!-- Add input field for goal amount -->
                     <div>
-                        <input type="number" id="budgetGoalAmount" placeholder="Enter Goal Amount">
+                        <label for="budgetGoalAmount">Goal Amount:</label>
+                        <div>
+                            <input type="number" id="budgetGoalAmount" name="budgetGoalAmount" placeholder="Enter Goal Amount">
+                        </div>
                     </div>
-                </div>
-                <button id="modifyBudgetButton" onclick="modifyBudget()">Update Current Amount</button>
+                    <button id="modifyBudgetButton">Update Current Amount</button>
+                </form>
+                
                 <!-- Add a button to save goal amount changes -->
-                <button id="saveGoalAmountButton" onclick="saveGoalAmount()">Update Goal Amount</button>
+                <button id="saveGoalAmountButton">Update Goal Amount</button>
                 <!-- Add a button to clear localStorage -->
-                <button id="resetValuesButton" onclick="resetValues()">Reset Values</button>
-                <button id="goToHomePageButton" onclick="goToHomePage()">Go to Home Page</button>
+                <button id="resetValuesButton" >Reset Values</button>
+                <button id="goToHomePageButton">Go to Home Page</button>
 
 
             </div>
@@ -108,8 +111,10 @@
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="{{ url_for('static', filename='js/budget.js') }}"></script>
+    <!-- <script type="module" src="{{ url_for('static', filename='js/budget.js') }}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
 </body>
 </html>

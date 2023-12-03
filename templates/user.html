@@ -58,7 +58,7 @@
             <section id="customerNavbar">
                 <nav class="navbar navbar-expand-lg border-bottom border-body bg-body-tertiary">
                    <div class="container-fluid">
-                      <a class="navbar-brand navbar-dark" href="./homePage.html">
+                      <a class="navbar-brand navbar-dark" href="{{ url_for('homePage') }}">
                          <img src="{{ url_for('static', filename='img/dollar-symbol.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                       </a>
                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -96,15 +96,15 @@
             </div> -->
         <!-- </nav> -->
             <h1>User Settings</h1>
-            <form id="userSettingsForm">
                 <h2>Basic Information</h2>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-
+                <p>{{ user_data.email }}</p>
+    
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <p>{{ user_data.email }}</p>
 
                 <h2>Change Password</h2>
+            <form id="changePassoword" method="POST" action="{{ url_for('changePassword') }}">
                 <label for="currentPassword">Current Password:</label>
                 <input type="password" id="currentPassword" name="currentPassword" required>
 
