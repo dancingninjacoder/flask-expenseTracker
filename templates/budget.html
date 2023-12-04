@@ -45,42 +45,34 @@
             <div id="budgetSections">
                 <div class="budget-section" id="utilities">
                     <h3>Utilities</h3>
-                    <p>Current Amount: <span id="utilitiesCurrent">0</span></p>
+                    <p>Current Amount: <span id="utilitiesCurrent"> {{ util }} </span></p>
                     <p>Goal Amount: <span id="utilitiesGoal">0</span></p>
                 </div>
                 <div class="budget-section" id="personal">
                     <h3>Personal</h3>
-                    <p>Current Amount: <span id="personalCurrent">0</span></p>
+                    <p>Current Amount: <span id="personalCurrent"> {{ pers }}</span></p>
                     <p>Goal Amount: <span id="personalGoal">0</span></p>
                 </div>
                 <div class="budget-section" id="discretionary">
                     <h3>Discretionary</h3>
-                    <p>Current Amount: <span id="discretionaryCurrent">0</span></p>
+                    <p>Current Amount: <span id="discretionaryCurrent"> {{ dis }} </span></p>
                     <p>Goal Amount: <span id="discretionaryGoal">0</span></p>
                 </div>
             </div>
             <div id="modifyBudget">
                 <h3>Modify Budget:</h3>
-                <form id="budgetForm" method= "POST" action="{{ url_for('processBudget') }}">
+                <form id="budgetForm" method= "POST" action="{{ url_for('budget') }}">
                     <div>
                         <label for="budgetCategory">Select Category:</label>
                         <div>
                             <select id="budgetCategory" name="budgetCategory">
-                                <option value="utilities">Utilities</option>
-                                <option value="personal">Personal</option>
-                                <option value="discretionary">Discretionary</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Discretionary">Discretionary</option>
                             </select>
                         </div>
                     </div>
-                    <div>
-                        <label for="budgetChangeType">Change Type:</label>
-                        <div>
-                            <select id="budgetChangeType" name="budgetChangeType">
-                                <option value="deposit">Deposit</option>
-                                <option value="deduct">Deduct</option>
-                            </select>
-                        </div>
-                    </div>
+
                     <div>
                         <label for="budgetAmount">Amount:</label>
                         <div>
@@ -94,15 +86,12 @@
                             <input type="number" id="budgetGoalAmount" name="budgetGoalAmount" placeholder="Enter Goal Amount">
                         </div>
                     </div>
-                    <button id="modifyBudgetButton">Update Current Amount</button>
+                    <button id="modifyBudgetButton">Add Budget</button>
+                    <button id="modifyBudgetButton">Update Budget</button>
                 </form>
                 
                 <!-- Add a button to save goal amount changes -->
                 <button id="saveGoalAmountButton">Update Goal Amount</button>
-                <!-- Add a button to clear localStorage -->
-                <button id="resetValuesButton" >Reset Values</button>
-                <button id="goToHomePageButton">Go to Home Page</button>
-
 
             </div>
         </div>
@@ -115,6 +104,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-
+    
 </body>
 </html>

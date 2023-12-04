@@ -65,99 +65,47 @@
                      <label for="amount">Amount:</label>
                      <input type="number" id="amount" name="amount" placeholder="Enter Amount">
                   </div>
-                  <button id="addIncomeButton" class="btn">Add More Income</button>
-                  <button id="generateChartButton" class="btn">Generate Chart</button>
+                  <button id="addIncomeButton" class="btn">Add Income</button>
+                  <!-- <button id="generateChartButton" class="btn">Generate Chart</button> -->
                </form>
                <div id="tableContainer">
                   <!-- The dynamic table will be inserted here -->
                </div>
+
+               <h2>Total Incomes: <span id="totalIncomes"></span></h2>
+
+               <table id="incomesTable">
+                   <thead>
+                   <tr>
+                       <th>Date</th>
+                       <th>Merchant Name</th>
+                       <th>Category</th>
+                       <th>Amount</th>
+                   </tr>
+                   <tr>
+                       <td>{{ incomeDate }}</td>
+                       <td>{{ incomeName }}</td>
+                       <td>{{ incomeCategory }}</td>
+                       <td>{{ incomeAmount }}</td>
+                   </tr>
+                       
+                   </thead>
+                   <tbody>
+                   <!-- Expenses will be inserted here -->
+                   </tbody>
+               </table>
             </div>
          </div>
          <!-- Chart container with flexbox item style -->
-         <div id="incomeChartContainer">
+         <!-- <div id="incomeChartContainer">
             <canvas id="incomeChart" width="400" height="200"></canvas>
-            <!-- Button to export the chart -->
-            <button id="exportChartButton" class="btn">Export Chart</button>
-         </div>
+             Button to export the chart -->
+            <!-- <button id="exportChartButton" class="btn">Export Chart</button>
+         </div> --> 
       </div>
    </div>
 </div>
-<!-- ... scripts ... -->
-<!-- <script type="module" src="{{ url_for('static', filename='js/IncomeTracker.js') }}"></script> -->
-<!-- <script>
-   document.getElementById('addIncomeButton').addEventListener('click', function() {
 
-      document.getElementById('addIncomeButton').addEventListener('click', function() {
-
-         var incomeInputs = document.getElementById('incomeInputs');
-
-
-
-         // Create new input for Other Income
-
-         var newOtherIncome = document.createElement('input');
-
-         newOtherIncome.type = 'text';
-
-         newOtherIncome.placeholder = 'Other Income';
-
-         newOtherIncome.className = 'income-source';
-
-
-
-         // Create new input for amount
-
-         var newOtherIncomeAmount = document.createElement('input');
-
-         newOtherIncomeAmount.type = 'number';
-
-         newOtherIncomeAmount.placeholder = 'Amount';
-
-         newOtherIncomeAmount.className = 'income-amount';
-
-
-
-         // Create new input for Paychecks/Salary
-
-         var newSalary = document.createElement('input');
-
-         newSalary.type = 'text';
-
-         newSalary.placeholder = 'Paychecks/Salary';
-
-         newSalary.className = 'income-source';
-
-
-
-         // Create new input for amount
-
-         var newSalaryAmount = document.createElement('input');
-
-         newSalaryAmount.type = 'number';
-
-         newSalaryAmount.placeholder = 'Amount';
-
-         newSalaryAmount.className = 'income-amount';
-
-
-
-         // Append new inputs to the incomeInputs div
-
-         incomeInputs.appendChild(newOtherIncome);
-
-         incomeInputs.appendChild(newOtherIncomeAmount);
-
-         incomeInputs.appendChild(newSalary);
-
-         incomeInputs.appendChild(newSalaryAmount);
-
-      });
-
-
-
-   });
-
-</script> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
