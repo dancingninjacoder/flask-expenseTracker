@@ -9,7 +9,20 @@
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/baseStyle.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/budget.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/IncomeTracker.css') }}">
-
+   <style>
+      table {
+        border-collapse: collapse;
+        width: 30%;
+      }
+      
+      th, td {
+        padding: 2px;
+        text-align: center;
+        border-bottom: 1px solid rgb(8, 59, 12);
+      }
+      
+      tr:hover {background-color: rgb(159, 214, 154);}
+   </style>
 </head>
 <body>
 

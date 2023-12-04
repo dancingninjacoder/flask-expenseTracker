@@ -289,9 +289,9 @@ def budget():
     persAmount =budgets.get('Personal', {}).get('amount')
     persGoal =budgets.get('Personal', {}).get('goal')
 
-    discGoal = budgets.get('Discretionary', {}).get('amount')
+    disGoal = budgets.get('Discretionary', {}).get('amount')
     discAmount = budgets.get('Discretionary', {}).get('goal')
-    return render_template('budget.html',utilAmount = utilAmount, utilGoal=utilGoal,persAmount=persAmount, persGoal=persGoal,discAmount=discAmount, disGoal= disGoal)
+    return render_template('budget.html',utilAmount = utilAmount, utilGoal=utilGoal,persAmount=persAmount, persGoal=persGoal,disAmount=discAmount, disGoal= disGoal)
 
 #Function to insert and store budget from ModifyBudget form
 @app.route('/processBudget', methods=['POST'])
