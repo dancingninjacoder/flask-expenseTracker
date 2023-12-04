@@ -275,6 +275,16 @@ def processIncome():
     
 @app.route('/budget', methods=['GET', 'POST'])
 def budget():
+
+    utilGoal=0
+    utilAmount=0
+
+    persGoal=0
+    persAmount=0
+
+    disGoal=0
+    discAmount=0
+
     if 'username' not in session:
         return redirect(url_for('index'))
     
@@ -290,8 +300,16 @@ def budget():
     
     user = db.users.find_one({'email': session['username']})
     budgets = user['budgets'] if user else {}
-    print(budgets)
-    return render_template('budget.html', budgets=budgets)
+
+    utilAmount = budgets.get('Utilities', {}).get('amount')
+    utilGoal = budgets.get('Utilities', {}).get('goal')
+
+    persAmount =budgets.get('Personal', {}).get('amount')
+    persGoal =budgets.get('Personal', {}).get('goal')
+
+    discGoal = budgets.get('Discretionary', {}).get('amount')
+    discAmount = budgets.get('Discretionary', {}).get('goal')
+    return render_template('budget.html',utilAmount = utilAmount, utilGoal=utilGoal,persAmount=persAmount, persGoal=persGoal,discAmount=discAmount, disGoal= disGoal)
     # Find the user document based on some identifier (e.g., email)
     # user_email = session['username'] #Find the user that is logged in to insert and retrieve
     # document = db.users.find_one({'email': user_email})
