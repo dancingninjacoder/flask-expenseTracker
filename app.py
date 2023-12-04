@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 
 #Database
-#client = pymongo.MongoClient("mongodb+srv://salahbucks:salahbucks@clusternaive.rkiskfb.mongodb.net/?retryWrites=true&w=majority")
+# client = pymongo.MongoClient("mongodb+srv://salahbucks:salahbucks@clusternaive.rkiskfb.mongodb.net/?retryWrites=true&w=majority")
 client = pymongo.MongoClient('localhost', 27017)
 db = client['SalahBucks']
 
@@ -121,22 +121,6 @@ def sign_up():
         #     return 'An error occurred while trying to create your account.'
 
     return render_template('signUp.html')
-    # if (request.method == 'POST'):
-    #     print("inside post")
-    #     users = db.users
-    #     print(users)
-    #     userArr = {
-    #        'email': request.form['signupEmail'],
-    #         'password': request.form['signupPassword']
-    #     }
-    #     print(userArr)
-    #     userArr['password'] = pbkdf2_sha256.encrypt(userArr['password'])
-    #     session['username'] = userArr['email']
-    #     users.insert_one(userArr)
-    #     print(users)
-    #     return redirect(url_for('index'))
-    # print("outside")
-    # return render_template('signUp.html')
 
 #Function to login into an existing db account, if not return to index
 @app.route('/login', methods=['POST'])
@@ -415,7 +399,6 @@ def changePassword():
         confirmPassword = request.form['confirmPassword']
 
         oldPassword = document['password']
-        print(oldPassword)
 
         #If password match then modify
         if(pbkdf2_sha256.verify(currentPassword, oldPassword) and newPassword == confirmPassword):

@@ -11,6 +11,15 @@
     --quaternary: #469B44;
 }
 
+#user {
+    background-color: #378537;
+    padding: 20px;
+    border-radius: 5px;
+    color: white; /* Change text color to white for better visibility */
+    width: 30%;
+}
+
+/* 
 .overlay {
     background: url("../img/background.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -125,7 +134,7 @@ h3 {
 
 /* Custom font for the page */
 /* For every custom font, a separate '@font-face' is necessary */
-@font-face {
+/* @font-face {
     font-family: AlgoriaLight;
     src: url(../fonts/AlgoriaLight.ttf);
 }
@@ -133,4 +142,4 @@ h3 {
     font-family: SmellaDaisy;
     size-adjust: 150%;
     src: url(../fonts/SmellaDaisy.ttf);
-}
+} */
