@@ -60,46 +60,37 @@
             </div>
             <div id="modifyBudget">
                 <h3>Modify Budget:</h3>
-                <div>
-                    <label for="budgetCategory">Select Category:</label>
+                <!-- Start of the form -->
+                <form action="/budget" method="post">
                     <div>
-                        <select id="budgetCategory">
-                            <option value="utilities">Utilities</option>
-                            <option value="personal">Personal</option>
-                            <option value="discretionary">Discretionary</option>
-                        </select>
+                        <label for="budgetCategory">Select Category:</label>
+                        <div>
+                            <select name="category" id="budgetCategory">
+                                <option value="Utilities">Utilities</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Discretionary">Discretionary</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label for="budgetChangeType">Change Type:</label>
                     <div>
-                        <select id="budgetChangeType">
-                            <option value="deposit">Deposit</option>
-                            <option value="deduct">Deduct</option>
-                        </select>
+                        <label for="budgetAmount">Amount:</label>
+                        <div>
+                            <!-- Ensure that the name attribute is set for budgetAmount -->
+                            <input type="number" name="amount" id="budgetAmount" placeholder="Enter Amount" required>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label for="budgetAmount">Amount:</label>
                     <div>
-                        <input type="number" id="budgetAmount" placeholder="Enter Amount">
+                        <label for="budgetGoalAmount">Goal Amount:</label>
+                        <div>
+                            <!-- Ensure that the name attribute is set for budgetGoalAmount -->
+                            <input type="number" name="goal" id="budgetGoalAmount" placeholder="Enter Goal Amount" required>
+                        </div>
                     </div>
-                </div>
-                <!-- Add input field for goal amount -->
-                <div>
-                    <label for="budgetGoalAmount">Goal Amount:</label>
+                    <!-- Submit button for the form -->
                     <div>
-                        <input type="number" id="budgetGoalAmount" placeholder="Enter Goal Amount">
+                        <input type="submit" value="Update Budget">
                     </div>
-                </div>
-                <button id="modifyBudgetButton" onclick="modifyBudget()">Update Current Amount</button>
-                <!-- Add a button to save goal amount changes -->
-                <button id="saveGoalAmountButton" onclick="saveGoalAmount()">Update Goal Amount</button>
-                <!-- Add a button to clear localStorage -->
-                <button id="resetValuesButton" onclick="resetValues()">Reset Values</button>
-                <button id="goToHomePageButton" onclick="goToHomePage()">Go to Home Page</button>
-
-
+                </form>
             </div>
         </div>
     </div>
