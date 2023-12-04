@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 
 #Database
-# client = pymongo.MongoClient("mongodb+srv://salahbucks:salahbucks@clusternaive.rkiskfb.mongodb.net/?retryWrites=true&w=majority")
+#client = pymongo.MongoClient("mongodb+srv://salahbucks:salahbucks@clusternaive.rkiskfb.mongodb.net/?retryWrites=true&w=majority")
 client = pymongo.MongoClient('localhost', 27017)
 db = client['SalahBucks']
 
@@ -121,6 +121,22 @@ def sign_up():
         #     return 'An error occurred while trying to create your account.'
 
     return render_template('signUp.html')
+    # if (request.method == 'POST'):
+    #     print("inside post")
+    #     users = db.users
+    #     print(users)
+    #     userArr = {
+    #        'email': request.form['signupEmail'],
+    #         'password': request.form['signupPassword']
+    #     }
+    #     print(userArr)
+    #     userArr['password'] = pbkdf2_sha256.encrypt(userArr['password'])
+    #     session['username'] = userArr['email']
+    #     users.insert_one(userArr)
+    #     print(users)
+    #     return redirect(url_for('index'))
+    # print("outside")
+    # return render_template('signUp.html')
 
 #Function to login into an existing db account, if not return to index
 @app.route('/login', methods=['POST'])
@@ -294,42 +310,10 @@ def budget():
     discGoal = budgets.get('Discretionary', {}).get('amount')
     discAmount = budgets.get('Discretionary', {}).get('goal')
     return render_template('budget.html',utilAmount = utilAmount, utilGoal=utilGoal,persAmount=persAmount, persGoal=persGoal,discAmount=discAmount, disGoal= disGoal)
-    # Find the user document based on some identifier (e.g., email)
-    # user_email = session['username'] #Find the user that is logged in to insert and retrieve
-    # document = db.users.find_one({'email': user_email})
-    # personalAmount=0
-    # discretAmount=0
-    # utilitiesAmount=0
-
-    # if(db.users.find_one({"budgets": {"$exists": True}})):
-    #     data = document['budgets']
-    #     print(data)
-    #     for list in data:
-    #         for dict  in list:
-    #             for category in dict.items():
-    #                 #0 is key, 1 is value
-    #                 if category[0] == 'Utilities':
-
-    #                     utilitiesAmount = category[1]
-    #                 if category[0] == 'Personal':
-    #                     personalAmount = category[1]
-    #                 if category[0] == 'Discretionary':
-    #                     discretAmount = category[1]
-                    # if key == 'category' and val == "utilities":
-                    #      personalAmount+=
-                    # if key == 'category' and val == "personal":
-                    # if key == 'category' and val == "discretionary":
-                    # if key == 'type':
-                    #     type = val
-                    # if key == 'amount':
-                    #     amount = val
-                    # if key == 'goal':
-                    #     amount = val
-    # return render_template('budget.html', util=utilitiesAmount, dis=discretAmount, pers=personalAmount)
 
 #Function to insert and store budget from ModifyBudget form
-# @app.route('/processBudget', methods=['POST'])
-# def processBudget():
+@app.route('/processBudget', methods=['POST'])
+def processBudget():
     
     # Find the user document based on some identifier (e.g., email)
     user_email = session['username'] #Find the user that is logged in to insert and retrieve
@@ -399,6 +383,7 @@ def changePassword():
         confirmPassword = request.form['confirmPassword']
 
         oldPassword = document['password']
+        print(oldPassword)
 
         #If password match then modify
         if(pbkdf2_sha256.verify(currentPassword, oldPassword) and newPassword == confirmPassword):
