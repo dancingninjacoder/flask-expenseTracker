@@ -137,6 +137,7 @@ def expense():
     # Find the user document based on some identifier (e.g., email)
     user_email = session['username'] #Find the user that is logged in to insert and retrieve
     document = db.users.find_one({'email': user_email})
+    date=""
     name = ""
     amount = 0
     category = ""
@@ -144,13 +145,15 @@ def expense():
         for data in document['expenses']:
             for list in data:
                 for key, val in list.items():
+                    if key == 'date':
+                        date = val
                     if key == 'name':
                         name = val
                     if key == 'amount':
                         amount = val
                     if key == 'category':
                         category = val
-        return render_template('expenseTracker.html', expenseName=name, expenseAmount = amount, expenseCategory = category)
+        return render_template('expenseTracker.html', expenseDate=date, expenseName=name, expenseAmount = amount, expenseCategory = category)
     return render_template('expenseTracker.html', expenseName=name, expenseAmount = amount, expenseCategory = category)
 
 #Function to insert and store expense from add Expense form
@@ -165,12 +168,14 @@ def processExpense():
         print("Fetching form data...")
 
         user_id = document.get('_id')
+        expenseDate = request.form['expenseDate']
         expenseName = request.form['expenseName']
         expenseAmount = request.form['expenseAmount']
         expenseCategory = request.form['expenseCategory']
 
         expense_form_data = [
-            {
+            {   
+                "date": expenseDate,
                 "name": expenseName,
                 "amount": int(expenseAmount),
                 "category": expenseCategory

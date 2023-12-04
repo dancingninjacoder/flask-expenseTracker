@@ -40,6 +40,8 @@
         <h1>Expense Tracker</h1>
 
         <form id="addExpenseForm" method= "POST" action="{{ url_for('processExpense') }}">
+            <label for="incomeDate">Date:</label>
+            <input type="date" id="expenseDate" name="expenseDate" placeholder="Select Date">
             <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" required>
             <input type="number" id="expenseAmount" name="expenseAmount" placeholder="Amount" required>
             <select id="expenseCategory" name="expenseCategory">
@@ -63,7 +65,7 @@
                 <th>Actions</th>
             </tr>
             <tr>
-                <td>12/3/2023</td>
+                <td>{{ expenseDate }}</td>
                 <td>{{ expenseName }}</td>
                 <td>{{ expenseAmount }}</td>
                 <td>{{ expenseCategory }}</td>

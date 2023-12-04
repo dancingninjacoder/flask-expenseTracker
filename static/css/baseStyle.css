@@ -63,6 +63,31 @@ form {
     text-align: center;
 }
 
+.signUpDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.signUpbutton {
+    display: inline-block;
+    font-family: AlgoriaLight, sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    padding: 5px;
+    cursor: pointer;
+    border: 2px solid var(--teritary);
+    background-color: var(--secondary);
+    color: var(--primary);
+    transition: .5s ease, background-color 0.3s, border-color 0.3s;
+}
+
+.signUpbutton:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 24px;
+    border-color: var(--primary);
+}
 
 /* This section is for buttons */
 
