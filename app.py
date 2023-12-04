@@ -115,28 +115,7 @@ def sign_up():
             return redirect(url_for('index'))
         else:
             return 'That email already exists!'
-        # except Exception as e:
-        #     # Log the error for debugging
-        #     print("An error occurred: ", e)
-        #     return 'An error occurred while trying to create your account.'
-
-    return render_template('signUp.html')
-    # if (request.method == 'POST'):
-    #     print("inside post")
-    #     users = db.users
-    #     print(users)
-    #     userArr = {
-    #        'email': request.form['signupEmail'],
-    #         'password': request.form['signupPassword']
-    #     }
-    #     print(userArr)
-    #     userArr['password'] = pbkdf2_sha256.encrypt(userArr['password'])
-    #     session['username'] = userArr['email']
-    #     users.insert_one(userArr)
-    #     print(users)
-    #     return redirect(url_for('index'))
-    # print("outside")
-    # return render_template('signUp.html')
+    return render_template('signUp.html') 
 
 #Function to login into an existing db account, if not return to index
 @app.route('/login', methods=['POST'])
@@ -152,7 +131,7 @@ def login():
 
 
 
-#TO BE DONE
+
 @app.route('/expense')
 def expense():
     # Find the user document based on some identifier (e.g., email)
@@ -161,9 +140,7 @@ def expense():
     name = ""
     amount = 0
     category = ""
-    if 'expenses' in document:        # expDoc = document['expenses']
-        # print(type(document['income']))
-        # print(document['income'])
+    if 'expenses' in document:        
         for data in document['expenses']:
             for list in data:
                 for key, val in list.items():
