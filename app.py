@@ -85,6 +85,12 @@ def income():
         return redirect(url_for('index'))
     return render_template('IncomeTracking.html')
 
+@app.route('/user')
+def user():
+    if 'username' not in session:
+        return redirect(url_for('index'))
+    return render_template('user.html')
+
 @app.route('/budget', methods=['GET', 'POST'])
 def budget():
     if 'username' not in session:
